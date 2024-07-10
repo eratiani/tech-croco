@@ -1,0 +1,40 @@
+@if (users$ | async; as users) {
+<p-table
+  [value]="users"
+  [paginator]="true"
+  [rows]="5"
+  [pageLinks]="4"
+  [paginatorDropdownAppendTo]="'body'"
+  [columns]="cols"
+  [rowsPerPageOptions]="[5, 10, 20]"
+>
+  <ng-template pTemplate="header" let-columns>
+    @for (col of columns; track $index) {
+    <th>
+      {{ col.header }}
+    </th>
+    }
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-columns="columns">
+    <tr>
+      @for (col of columns; track $index) {
+      <ng-container>
+        <td>
+          @if (col.header ==="სახელი") {{{ item[col.field]  |strSplitter:2}}}
+          @else if (col.header ==="გვარი" ) {
+          {{ item[col.field] | strSplitter }}
+          } @else {
+          {{
+            item[col.property] ? item[col.field][col.property] : item[col.field]
+          }}
+
+          }
+        </td>
+      </ng-container>
+      }
+    </tr>
+  </ng-template>
+</p-table>
+} @else {
+<app-loading-animation></app-loading-animation>
+}
