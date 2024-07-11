@@ -5,7 +5,7 @@ import { ICols } from '../../shared/interfaces/cols';
 import { TableModule } from 'primeng/table';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { StrSplitterPipe } from '../../shared/pipes/str-splitter.pipe';
-import { LoadingAnimationComponent } from '../../shared/loading-animation/loading-animation.component';
+import { LoadingAnimationComponent } from '../../shared/components/loading-animation/loading-animation.component';
 import { ButtonModule } from 'primeng/button';
 import { IUserWithPost } from '../../shared/interfaces/user';
 import { DialogModule } from 'primeng/dialog';

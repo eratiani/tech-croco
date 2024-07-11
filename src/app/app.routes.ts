@@ -4,13 +4,15 @@ import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'home/user',
     pathMatch: 'full',
   },
   {
     path: 'home',
     component: HomeComponent,
     loadChildren: () =>
-      import('./shared/navigation/navigation.routes').then((nav) => nav.routes),
+      import('./shared/components/navigation/navigation.routes').then(
+        (nav) => nav.routes
+      ),
   },
 ];

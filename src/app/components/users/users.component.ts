@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { DataService } from '../../services/data.service';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { StrSplitterPipe } from '../../shared/pipes/str-splitter.pipe';
-import { LoadingAnimationComponent } from '../../shared/loading-animation/loading-animation.component';
+import { LoadingAnimationComponent } from '../../shared/components/loading-animation/loading-animation.component';
 import { ICols } from '../../shared/interfaces/cols';
 import { IUser } from '../../shared/interfaces/user';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { SearchComponent } from '../search/search.component';
+import { SearchService } from '../../services/search.service';
 @Component({
   selector: 'app-users',
   standalone: true,
@@ -18,6 +20,7 @@ import { Router } from '@angular/router';
     StrSplitterPipe,
     LoadingAnimationComponent,
     ButtonModule,
+    SearchComponent,
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
@@ -25,7 +28,16 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
   users$!: Observable<IUser[]>;
   cols!: ICols[];
-  constructor(private dataService: DataService, private router: Router) {}
+  filterUserAction$ = this.searchService.filterUsersAction$;
+  filtredUsers$ = combineLatest([
+    this.users$,
+    this.filterUserAction$,
+  ]).subscribe((val) => console.log(val));
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    private searchService: SearchService
+  ) {}
   ngOnInit(): void {
     this.users$ = this.dataService.getUsers();
     this.initCols();
