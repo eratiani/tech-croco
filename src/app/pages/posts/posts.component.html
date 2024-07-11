@@ -1,22 +1,23 @@
-@if (posts$ | async;as posts) {
+@if (posts$ | async; as posts) {
 <p-table
   [value]="posts"
   [paginator]="true"
   [rows]="5"
   [pageLinks]="4"
+  styleClass="table-auto text-xs xl:text-base"
   [paginatorDropdownAppendTo]="'body'"
   [columns]="cols"
   [rowsPerPageOptions]="[5, 10, 20]"
 >
   <ng-template pTemplate="header" let-columns>
     @for (col of columns; track $index) {
-    <th>
+    <th class="text-center border border-slate-300">
       {{ col.header }}
     </th>
     }
   </ng-template>
   <ng-template pTemplate="body" let-item let-columns="columns">
-    <tr>
+    <tr class="border border-slate-300">
       @for (col of columns; track $index) {
       <ng-container>
         @if (col.header ==="მომხმარებლის სახელი") {
@@ -28,11 +29,13 @@
         } @else {
         <td>
           @for (post of item.arrayOfPosts; track $index) {
-          <div class="flex justify-between">
+          <div
+            class="flex justify-between items-center p-1 border border-slate-300"
+          >
             <span>{{ post.title }}.</span>
             <p-button
               icon="pi pi-info"
-              severity="info"
+              [severity]="'info'"
               [outlined]="true"
               iconPos="right"
               label="დეტალურად"
@@ -57,7 +60,7 @@
       [dismissableMask]="true"
       showEffect="fade"
       [modal]="true"
-      [style]="{ width: '50vw' }"
+      [style]="{ width: '70vw' }"
     >
       <div>
         <h5
@@ -70,10 +73,10 @@
         </p>
       </div>
 
-      <div class="_x_mb-40 _x_flex _x_h-full _x_w-full _x_gap-15">
+      <div class="_x_mb-40 _x_flex _x_h-full _x_w-full _x_gap-15 grid w-full">
         <button
-          type="button"
-          class="m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          type="button "
+          class="justify-self-end m-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           (click)="displayDialog = false"
         >
           Ok

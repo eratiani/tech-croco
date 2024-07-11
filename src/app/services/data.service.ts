@@ -11,12 +11,17 @@ export class DataService {
   getUsers() {
     return this.http.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
   }
+  getUsersById(id: string) {
+    return this.http.get<IUser>(
+      `https://jsonplaceholder.typicode.com/users/${id}`
+    );
+  }
   getPosts() {
     return this.http.get<IPost[]>('https://jsonplaceholder.typicode.com/posts');
   }
   getPostByUserId(id: string) {
     return this.http.get<IPost[]>(
-      `https://jsonplaceholder.typicode.com/posts?postId=${id}`
+      `https://jsonplaceholder.typicode.com/posts?userId=${id}`
     );
   }
 }

@@ -7,20 +7,32 @@ import { StrSplitterPipe } from '../../shared/pipes/str-splitter.pipe';
 import { LoadingAnimationComponent } from '../../shared/loading-animation/loading-animation.component';
 import { ICols } from '../../shared/interfaces/cols';
 import { IUser } from '../../shared/interfaces/user';
+import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [TableModule, AsyncPipe, StrSplitterPipe, LoadingAnimationComponent],
+  imports: [
+    TableModule,
+    AsyncPipe,
+    StrSplitterPipe,
+    LoadingAnimationComponent,
+    ButtonModule,
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
   users$!: Observable<IUser[]>;
   cols!: ICols[];
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
   ngOnInit(): void {
     this.users$ = this.dataService.getUsers();
     this.initCols();
+  }
+  onNavigateToPosts(id: number) {
+    console.log(id);
+    this.router.navigateByUrl(`home/post/${id}`);
   }
   initCols() {
     this.cols = [

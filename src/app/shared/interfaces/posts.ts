@@ -4,3 +4,6 @@ export interface IPost {
   title: string;
   body: string;
 }
+export interface IPostWithUrl extends IPost {
+  imgUrl: string;
+}
