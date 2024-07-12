@@ -31,7 +31,7 @@ export class SearchComponent {
   searchPrompt: string[] = ['First Name', 'Last Name', 'Email'];
   searchParameter!: string;
   searchForm!: FormGroup;
-  searchBy = SearchPrompt[1] as any;
+  searchBy = SearchPrompt[1];
   constructor(private searchService: SearchService) {}
   @Input() usersArr!: IUser[];
   ngOnInit(): void {

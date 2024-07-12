@@ -88,6 +88,9 @@ export class UsersComponent implements OnInit {
   onNavigateToPosts(id: number) {
     this.router.navigateByUrl(`home/post/${id}`);
   }
+  onNavigateToToDo(id: number) {
+    this.router.navigateByUrl(`todo/${id}`);
+  }
   initCols() {
     this.cols = [
       {

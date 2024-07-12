@@ -15,4 +15,9 @@ export const routes: Routes = [
         (nav) => nav.routes
       ),
   },
+  {
+    path: 'todo/:id',
+    loadComponent: () =>
+      import('./pages/todos/todos.component').then((a) => a.TodosComponent),
+  },
 ];

@@ -5,7 +5,7 @@
   [paginator]="true"
   [rows]="5"
   [pageLinks]="4"
-  styleClass="table-auto border-collapse border border-slate-400 text-xs xl:text-base"
+  styleClass="table-auto border-collapse border border-slate-400 text-xs 2xl:text-sm"
   [paginatorDropdownAppendTo]="'body'"
   [columns]="cols"
   [rowsPerPageOptions]="[5, 10, 20]"
@@ -41,6 +41,15 @@
           iconPos="right"
           label="პოსტები"
           (onClick)="onNavigateToPosts(item.id)"
+        />
+      </td>
+      <td class="border border-slate-300">
+        <p-button
+          severity="info"
+          [outlined]="true"
+          iconPos="right"
+          label="To Do"
+          (onClick)="onNavigateToToDo(item.id)"
         />
       </td>
     </tr>

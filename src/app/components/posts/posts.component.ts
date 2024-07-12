@@ -39,7 +39,9 @@ export class PostsComponent {
     this.initCols();
     this.posts$ = this.getUsersWithPosts();
   }
-  getUsersWithPosts(): Observable<any[]> {
+  getUsersWithPosts(): Observable<
+    { userName: string; arrayOfPosts: IPost[] }[]
+  > {
     return forkJoin({
       users: this.dataService.getUsers(),
       posts: this.dataService.getPosts(),
