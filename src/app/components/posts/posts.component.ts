@@ -30,7 +30,6 @@ export class PostsComponent {
   showDetailsPopup(post: IPost) {
     this.displayDialog = true;
     this.postDetail = post;
-    console.log(post);
   }
   posts$!: Observable<IUserWithPost[]>;
   cols!: ICols[];
@@ -38,7 +37,7 @@ export class PostsComponent {
 
   ngOnInit(): void {
     this.initCols();
-    this.posts$ = this.getUsersWithPosts().pipe(tap((res) => console.log(res)));
+    this.posts$ = this.getUsersWithPosts();
   }
   getUsersWithPosts(): Observable<any[]> {
     return forkJoin({

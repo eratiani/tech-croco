@@ -10,10 +10,7 @@ import { Observable, timer, map, shareReplay } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit {
-  ngOnInit(): void {
-    console.log(this.showElement);
-  }
+export class HeaderComponent {
   private _time$: Observable<Date> = timer(0, 1000).pipe(
     map((tick) => new Date()),
     shareReplay(1)

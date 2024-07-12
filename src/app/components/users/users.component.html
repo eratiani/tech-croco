@@ -1,4 +1,4 @@
-@if (users$ | async; as users) {
+@if (filtredUsers$ | async; as users) {
 <app-search [usersArr]="users"></app-search>
 <p-table
   [value]="users"

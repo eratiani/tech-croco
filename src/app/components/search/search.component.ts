@@ -38,13 +38,13 @@ export class SearchComponent {
     this.initForm();
     this.searchForm.get('searchSelect')?.valueChanges.subscribe((value) => {
       this.searchBy = this.formatSearchQuery(value);
-      console.log(this.searchBy);
     });
     this.searchForm
       .get('searchParameter')
       ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((response) => {
-        const param = this.searchParameter;
+        const param = this.searchBy;
+
         this.searchService.updateFilter({ [param]: response });
       });
   }

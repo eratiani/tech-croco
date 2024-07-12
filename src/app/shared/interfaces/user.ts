@@ -31,3 +31,8 @@ export interface IUserWithPost {
   userName: string;
   arrayOfPosts: IPost[];
 }
+
+export interface IModifiedUser extends IUser {
+  firstName: string;
+  lastName: string;
+}

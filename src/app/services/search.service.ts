@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { IUser } from '../shared/interfaces/user';
+import { IModifiedUser, IUser } from '../shared/interfaces/user';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  private filterUserSubject = new BehaviorSubject<Partial<IUser>>({ name: '' });
+  private filterUserSubject = new BehaviorSubject<Partial<IModifiedUser>>({
+    firstName: '',
+  });
 
   filterUsersAction$ = this.filterUserSubject.asObservable();
 
