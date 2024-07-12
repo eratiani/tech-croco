@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
@@ -7,5 +7,6 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
   imports: [NavigationComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

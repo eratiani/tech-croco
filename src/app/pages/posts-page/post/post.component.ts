@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IPostWithUrl } from '../../../shared/interfaces/posts';
 import { AsyncPipe } from '@angular/common';
 
@@ -8,6 +8,7 @@ import { AsyncPipe } from '@angular/common';
   imports: [AsyncPipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostComponent {
   @Input() posts!: IPostWithUrl[];

@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -20,10 +25,11 @@ import { Subject, takeUntil, tap } from 'rxjs';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'tech-task';
-  destroy$!: Subject<void>;
+  destroy$ = new Subject<void>();
   constructor(
     private snackBar: MatSnackBar,
     private errorHandler: ErrorHandlerService

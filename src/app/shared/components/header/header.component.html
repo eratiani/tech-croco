@@ -1,16 +1,16 @@
-<div class="bg-white border-gray-200 dark:bg-gray-900 p-4">
+<div class="header border-gray-200 dark:bg-gray-900 p-4">
   <div class="flex items-center justify-between">
     <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="../../../assets/coroco.png" class="h-8" alt="Flowbite Logo" />
 
       <span
-        class="hidden sm:block self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >crocobet</span
+        class="text-white hidden sm:block self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        ><span class="croco">croco</span>bet</span
       >
     </a>
 
     <div>
-      <p>{{ time | async | date : "medium" }}</p>
+      <p class="text-white">{{ time | async | date : "medium" }}</p>
     </div>
   </div>
 </div>

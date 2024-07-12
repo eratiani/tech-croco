@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -25,13 +32,14 @@ import { SearchService } from '../../services/search.service';
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit, OnDestroy {
   fb = inject(FormBuilder);
   searchPrompt: string[] = ['First Name', 'Last Name', 'Email'];
   searchParameter!: string;
   searchForm!: FormGroup;
-  destroy$!: Subject<void>;
+  destroy$ = new Subject<void>();
   searchBy = SearchPrompt[1];
   @Input() usersArr!: IUser[];
   constructor(private searchService: SearchService) {}
@@ -55,6 +63,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.destroy$.next();
+    this.searchService.updateFilter({ username: '' });
   }
   initForm() {
     this.searchForm = this.fb.group({
@@ -73,10 +82,5 @@ export class SearchComponent implements OnInit, OnDestroy {
       default:
         return 'firstName';
     }
-  }
-  filterArrayWitHQuery(users: IUser[], query: string, parameter: keyof IUser) {
-    return users.filter(
-      (user) => String(user[parameter]).toLowerCase().indexOf(query) === 0
-    );
   }
 }

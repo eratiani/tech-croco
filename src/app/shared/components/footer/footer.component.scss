@@ -1,0 +1,152 @@
+@import "../../../../variables.scss";
+
+.footer {
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-top: 20vh;
+  padding: 2em;
+  gap: 10px;
+  display: flex;
+  bottom: 0;
+  position: relative;
+  width: 100%;
+  background-color: $color-bg-secondary;
+}
+
+div.right {
+  margin: 0;
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  gap: 10px;
+  flex: 1;
+}
+
+div.left {
+  flex-basis: 100%;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  width: 50%;
+  flex-direction: column;
+  flex: 1;
+}
+
+.msg {
+  flex-basis: 100%;
+}
+
+div.bottom {
+  min-width: 0;
+  overflow-x: scroll;
+  padding: 1em;
+  gap: 2em;
+  color: white;
+  width: 100%;
+  flex-basis: 100%;
+  display: flex;
+}
+
+.ftrtxt {
+  flex-basis: 100%;
+  font-size: 15px;
+  text-align: center;
+  font-family: Rubik Mono One;
+  color: white;
+}
+
+.ftrhead {
+  font-size: 35px;
+}
+
+.ftrhead::after,
+.ftrtxt::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.ftrlinks {
+  flex-basis: 1;
+  width: 20px;
+  height: 20px;
+}
+.ftrlinks > svg {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+hr {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  flex-basis: 100%;
+  border: solid 1px grey;
+}
+
+svg {
+  fill: white;
+
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+svg:hover {
+  transform: scale(1.1);
+  fill: grey;
+}
+
+::placeholder {
+  font-family: Azeret Mono;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 5px;
+  width: 2px;
+}
+
+#submitbtn {
+  display: none;
+  border-radius: 10px;
+  border: none;
+  font-family: Rubik Mono One;
+  font-size: 15px;
+  transition: 0.5s;
+}
+
+#submitbtn:hover {
+  background-color: var(--lightblk);
+  color: white;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    height: 0%;
+    border-radius: 10px;
+  }
+  100% {
+    opacity: 1;
+    height: 100%;
+    border-radius: 10px;
+  }
+}
+.croco {
+  color: $color-croco;
+}
+
+@media only screen and (max-width: 8000px) {
+  .ftrlinks {
+    width: 50px;
+    height: 50px;
+  }
+}

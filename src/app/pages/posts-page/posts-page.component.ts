@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { PostComponent } from './post/post.component';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
@@ -11,6 +11,7 @@ import { AsyncPipe } from '@angular/common';
   imports: [PostComponent, AsyncPipe],
   templateUrl: './posts-page.component.html',
   styleUrl: './posts-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsPageComponent implements OnInit {
   userName: string = '';

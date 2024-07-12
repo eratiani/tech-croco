@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { ICols } from '../../shared/interfaces/cols';
@@ -23,14 +23,11 @@ import { IPost } from '../../shared/interfaces/posts';
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostsComponent {
   displayDialog: boolean = false;
   postDetail!: IPost;
-  showDetailsPopup(post: IPost) {
-    this.displayDialog = true;
-    this.postDetail = post;
-  }
   posts$!: Observable<IUserWithPost[]>;
   cols!: ICols[];
   constructor(private dataService: DataService) {}
@@ -38,6 +35,10 @@ export class PostsComponent {
   ngOnInit(): void {
     this.initCols();
     this.posts$ = this.getUsersWithPosts();
+  }
+  showDetailsPopup(post: IPost) {
+    this.displayDialog = true;
+    this.postDetail = post;
   }
   getUsersWithPosts(): Observable<
     { userName: string; arrayOfPosts: IPost[] }[]

@@ -1,6 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "./variables.scss";
+
+body {
+  background-color: $color-bg-main;
+}
 .p-overflow-hidden {
   overflow: auto !important;
 }

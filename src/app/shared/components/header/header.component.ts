@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable, timer, map, shareReplay } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { Observable, timer, map, shareReplay } from 'rxjs';
   imports: [DatePipe, RouterModule, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
   private _time$: Observable<Date> = timer(0, 1000).pipe(

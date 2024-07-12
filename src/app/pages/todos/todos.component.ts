@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, tap, map } from 'rxjs';
 import { DataService } from '../../services/data.service';
@@ -19,6 +19,7 @@ import { LoadingAnimationComponent } from '../../shared/components/loading-anima
   ],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosComponent {
   userName: string = '';

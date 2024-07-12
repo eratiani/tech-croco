@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { DataService } from '../../services/data.service';
 import { AsyncPipe } from '@angular/common';
@@ -40,7 +40,7 @@ import {
       state(
         'bg',
         style({
-          backgroundColor: 'green',
+          backgroundColor: '#e2dcdc',
         })
       ),
       transition('default <=> bg', [animate('300ms ease-in-out')]),
@@ -48,6 +48,7 @@ import {
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit {
   users$!: Observable<IUser[]>;

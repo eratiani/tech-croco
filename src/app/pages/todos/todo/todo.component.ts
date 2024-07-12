@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ITodo } from '../../../shared/interfaces/todos';
 
 @Component({
@@ -8,6 +8,7 @@ import { ITodo } from '../../../shared/interfaces/todos';
   imports: [CommonModule],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoComponent {
   @Input() todos!: ITodo[];

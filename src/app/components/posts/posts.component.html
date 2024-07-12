@@ -1,5 +1,6 @@
 @if (posts$ | async; as posts) {
 <p-table
+  [style]="{ 'background-color': '#898d91' }"
   [value]="posts"
   [paginator]="true"
   [rows]="5"
@@ -11,7 +12,10 @@
 >
   <ng-template pTemplate="header" let-columns>
     @for (col of columns; track $index) {
-    <th class="text-center border border-slate-300">
+    <th
+      style="background-color: #898d91"
+      class="text-center border border-slate-300"
+    >
       {{ col.header }}
     </th>
     }
