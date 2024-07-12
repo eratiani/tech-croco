@@ -1,0 +1,13 @@
+@import "../variables.scss";
+.container--content {
+  width: $breakpoint-mobile;
+  margin: 0 auto;
+}
+.p-overflow-hidden {
+  overflow: auto !important;
+}
+@media (min-width: 1024px) {
+  .container--content {
+    width: $breakpoint-fullscreen;
+  }
+}

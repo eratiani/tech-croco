@@ -1,0 +1,65 @@
+@if (filtredUsers$ | async; as users) {
+<app-search [usersArr]="users"></app-search>
+<p-table
+  [value]="users"
+  [paginator]="true"
+  [rows]="5"
+  [pageLinks]="4"
+  styleClass="table-auto border-collapse border border-slate-400 text-xs overflow-y-hidden"
+  [paginatorDropdownAppendTo]="'body'"
+  [columns]="cols"
+  [rowsPerPageOptions]="[5, 10, 20]"
+>
+  <ng-template pTemplate="header" let-columns>
+    @for (col of columns; track $index) {
+    <th class="text-center border border-slate-300">
+      {{ col.header }}
+    </th>
+    }
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-columns="columns">
+    <tr>
+      @for (col of columns; track $index) {
+      <ng-container>
+        <td class="border border-slate-300">
+          @if (col.header ==="სახელი") {{{ item[col.field]  |strSplitter:2}}}
+          @else if (col.header ==="გვარი" ) {
+          {{ item[col.field] | strSplitter }}
+          } @else {
+          {{
+            item[col.property] ? item[col.field][col.property] : item[col.field]
+          }}
+
+          }
+        </td>
+      </ng-container>
+      }
+      <td
+        class="border border-slate-300"
+        [@scaleAnimation]="bgArray[item.id] ? 'bg' : 'default'"
+        (mouseenter)="toggleBgChange(item.id)"
+        (mouseleave)="toggleBgChange(item.id)"
+      >
+        <p-button
+          severity="info"
+          [outlined]="true"
+          iconPos="right"
+          label="პოსტები"
+          (onClick)="onNavigateToPosts(item.id)"
+        />
+      </td>
+      <td class="border border-slate-300">
+        <p-button
+          severity="info"
+          [outlined]="true"
+          iconPos="right"
+          label="To Do"
+          (onClick)="onNavigateToToDo(item.id)"
+        />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+} @else {
+<app-loading-animation></app-loading-animation>
+}

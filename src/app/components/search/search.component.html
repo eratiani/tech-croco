@@ -1,0 +1,13 @@
+<form class="example-form flex" [formGroup]="searchForm">
+  <mat-form-field class="example-full-width p-3">
+    <input formControlName="searchParameter" matInput placeholder="search" />
+  </mat-form-field>
+  <mat-form-field class="p-3">
+    <mat-label>Search</mat-label>
+    <mat-select formControlName="searchSelect">
+      @for (prompt of searchPrompt; track prompt) {
+      <mat-option [value]="prompt">{{ prompt }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</form>
