@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+.p-overflow-hidden {
+  overflow: auto !important;
+}
+.snackbar-error {
+  .mdc-snackbar__surface {
+    background-color: red !important;
+  }
+
+  .mdc-snackbar__label {
+    color: white !important;
+  }
+}
+.custom-snackbar {
+  .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    border-radius: 8px !important;
+  }
+
+  .mat-mdc-button.mat-mdc-snack-bar-action {
+    color: white !important;
+  }
+}
