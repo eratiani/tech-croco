@@ -5,7 +5,7 @@
   [paginator]="true"
   [rows]="5"
   [pageLinks]="4"
-  styleClass="table-auto border-collapse border border-slate-400 text-xs 2xl:text-sm"
+  styleClass="table-auto border-collapse border border-slate-400 text-xs overflow-y-hidden"
   [paginatorDropdownAppendTo]="'body'"
   [columns]="cols"
   [rowsPerPageOptions]="[5, 10, 20]"
@@ -34,7 +34,12 @@
         </td>
       </ng-container>
       }
-      <td class="border border-slate-300">
+      <td
+        class="border border-slate-300"
+        [@scaleAnimation]="bgArray[item.id] ? 'bg' : 'default'"
+        (mouseenter)="toggleBgChange(item.id)"
+        (mouseleave)="toggleBgChange(item.id)"
+      >
         <p-button
           severity="info"
           [outlined]="true"

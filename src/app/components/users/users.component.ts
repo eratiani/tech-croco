@@ -18,6 +18,13 @@ import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
 import { SearchService } from '../../services/search.service';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 @Component({
   selector: 'app-users',
   standalone: true,
@@ -29,6 +36,23 @@ import { SearchService } from '../../services/search.service';
     ButtonModule,
     SearchComponent,
   ],
+  animations: [
+    trigger('scaleAnimation', [
+      state(
+        'default',
+        style({
+          backgroundColor: 'white',
+        })
+      ),
+      state(
+        'bg',
+        style({
+          backgroundColor: 'green',
+        })
+      ),
+      transition('default <=> bg', [animate('300ms ease-in-out')]),
+    ]),
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
@@ -37,6 +61,9 @@ export class UsersComponent implements OnInit {
   cols!: ICols[];
   filterUserAction$ = this.searchService.filterUsersAction$;
   filtredUsers$!: Observable<IModifiedUser[]>;
+  isScaled = false;
+  bgArray: boolean[] = [];
+
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -70,10 +97,16 @@ export class UsersComponent implements OnInit {
           (user) =>
             user[property].toLowerCase().indexOf(value.toLowerCase()) === 0
         );
-      })
+      }),
+
+      tap((val) => (this.bgArray = val.map(() => false)))
     );
 
     this.initCols();
+  }
+
+  toggleBgChange(index: number) {
+    this.bgArray[index] = !this.bgArray[index];
   }
   getNameOrSurname(username: string, type: string) {
     let userArr = username.split(' ');
