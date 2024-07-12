@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { SearchPrompt } from './search.model';
 import { IUser } from '../../shared/interfaces/user';
 import { SearchService } from '../../services/search.service';
@@ -26,14 +26,16 @@ import { SearchService } from '../../services/search.service';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit, OnDestroy {
   fb = inject(FormBuilder);
   searchPrompt: string[] = ['First Name', 'Last Name', 'Email'];
   searchParameter!: string;
   searchForm!: FormGroup;
+  destroy$!: Subject<void>;
   searchBy = SearchPrompt[1];
-  constructor(private searchService: SearchService) {}
   @Input() usersArr!: IUser[];
+  constructor(private searchService: SearchService) {}
+
   ngOnInit(): void {
     this.initForm();
     this.searchForm.get('searchSelect')?.valueChanges.subscribe((value) => {
@@ -41,11 +43,18 @@ export class SearchComponent {
     });
     this.searchForm
       .get('searchParameter')
-      ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
+      ?.valueChanges.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
       .subscribe((response) => {
         const param = this.searchBy;
         this.searchService.updateFilter({ [param]: response });
       });
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
   initForm() {
     this.searchForm = this.fb.group({
