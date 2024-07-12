@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SearchPrompt } from './search.model';
 import { IUser } from '../../shared/interfaces/user';
 import { SearchService } from '../../services/search.service';
@@ -44,7 +44,6 @@ export class SearchComponent {
       ?.valueChanges.pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((response) => {
         const param = this.searchBy;
-
         this.searchService.updateFilter({ [param]: response });
       });
   }

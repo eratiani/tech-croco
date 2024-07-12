@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './loading-animation.component.html',
-  styleUrl: './loading-animation.component.scss'
+  styleUrl: './loading-animation.component.scss',
 })
-export class LoadingAnimationComponent {
-
-}
+export class LoadingAnimationComponent {}

@@ -2,14 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { DataService } from '../../services/data.service';
 import { AsyncPipe } from '@angular/common';
-import {
-  combineLatest,
-  filter,
-  map,
-  Observable,
-  Subscription,
-  tap,
-} from 'rxjs';
+import { combineLatest, map, Observable, tap } from 'rxjs';
 import { StrSplitterPipe } from '../../shared/pipes/str-splitter.pipe';
 import { LoadingAnimationComponent } from '../../shared/components/loading-animation/loading-animation.component';
 import { ICols } from '../../shared/interfaces/cols';

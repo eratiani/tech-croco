@@ -74,4 +74,6 @@
 </div>
 @if (todos$| async; as todoArr) {
 <app-todo [todos]="todoArr"></app-todo>
+} @else {
+<app-loading-animation></app-loading-animation>
 }

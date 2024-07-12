@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { forkJoin, map, Observable, tap } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { ICols } from '../../shared/interfaces/cols';
 import { TableModule } from 'primeng/table';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { StrSplitterPipe } from '../../shared/pipes/str-splitter.pipe';
 import { LoadingAnimationComponent } from '../../shared/components/loading-animation/loading-animation.component';
 import { ButtonModule } from 'primeng/button';

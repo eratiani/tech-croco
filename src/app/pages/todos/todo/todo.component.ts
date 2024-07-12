@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ITodo } from '../../../shared/interfaces/todos';
 
 @Component({
   selector: 'app-todo',
@@ -9,5 +10,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './todo.component.scss',
 })
 export class TodoComponent {
-  @Input() todos!: any[];
+  @Input() todos!: ITodo[];
 }

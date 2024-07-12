@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable, timer, map, shareReplay } from 'rxjs';
 
@@ -15,7 +15,6 @@ export class HeaderComponent {
     map((tick) => new Date()),
     shareReplay(1)
   );
-  showElement: any;
 
   get time() {
     return this._time$;

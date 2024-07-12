@@ -2,16 +2,21 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, tap, map } from 'rxjs';
 import { DataService } from '../../services/data.service';
-import { IPostWithUrl } from '../../shared/interfaces/posts';
 import { TodoComponent } from './todo/todo.component';
 import { AsyncPipe } from '@angular/common';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { ITodo } from '../../shared/interfaces/todos';
+import { LoadingAnimationComponent } from '../../shared/components/loading-animation/loading-animation.component';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [TodoComponent, AsyncPipe, NavigationComponent],
+  imports: [
+    TodoComponent,
+    AsyncPipe,
+    NavigationComponent,
+    LoadingAnimationComponent,
+  ],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss',
 })
